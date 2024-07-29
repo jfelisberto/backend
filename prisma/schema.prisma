@@ -31,7 +31,7 @@ model Servico {
   descricao    String
   preco        Float
   qtdeSlots    Int
-  imagemURL    String
+  imagemUrl    String
   agendamentos Agendamento[]
 
   @@map("servico")

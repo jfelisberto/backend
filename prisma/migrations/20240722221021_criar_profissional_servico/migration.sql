@@ -17,7 +17,7 @@ CREATE TABLE "servico" (
     "descricao" TEXT NOT NULL,
     "preco" DOUBLE PRECISION NOT NULL,
     "qtdeSlots" INTEGER NOT NULL,
-    "imagemURL" TEXT NOT NULL,
+    "imagemUrl" TEXT NOT NULL,
 
     CONSTRAINT "servico_pkey" PRIMARY KEY ("id")
 );
