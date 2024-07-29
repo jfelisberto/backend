@@ -11,9 +11,7 @@ async function seed() {
   await prisma.profissional.createMany({
     data: profissionais as PrismaProfissional[],
   });
-  await prisma.servico.createMany({
-    data: servicos as PrismaServico[],
-  });
+  await prisma.servico.createMany({ data: servicos as PrismaServico[] });
 }
 
 seed();

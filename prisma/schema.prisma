@@ -9,15 +9,14 @@ generator client {
 }
 
 datasource db {
-  // provider = "postgresql"
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model Profissional {
   id                   Int           @id @default(autoincrement())
-  nome                 String        @db.Text
-  descricao            String        @db.Text
+  nome                 String        @unique
+  descricao            String
   imagemUrl            String
   avaliacao            Float
   quantidadeAvaliacoes Int
@@ -28,11 +27,11 @@ model Profissional {
 
 model Servico {
   id           Int           @id @default(autoincrement())
-  nome         String        @unique @db.VarChar(255)
-  descricao    String?       @db.Text
+  nome         String        @unique
+  descricao    String
   preco        Float
   qtdeSlots    Int
-  imagemUrl    String
+  imagemURL    String
   agendamentos Agendamento[]
 
   @@map("servico")
@@ -41,17 +40,10 @@ model Servico {
 model Agendamento {
   id             Int          @id @default(autoincrement())
   emailCliente   String
-  data           DateTime     @db.Timestamp
+  data           DateTime     @db.Timestamptz(3)
   profissional   Profissional @relation(fields: [profissionalId], references: [id])
   profissionalId Int
   servicos       Servico[]
 
   @@map("agendamento")
 }
-
-// model Cliente {
-//   id         Int    @id @default(autoincrement())
-//   nome       String
-//   imagemUrl  String
-//   testemunho String
-// }
